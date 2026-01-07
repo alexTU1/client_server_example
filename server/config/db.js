@@ -1,3 +1,10 @@
+/**
+ * @fileoverview This file establishes a connection to mongoDB Atlas.
+ * @author @alexTU1
+ * @version 1.0.0
+ * @module db.js
+ */
+
 import mongoose from 'mongoose';
 
 const connectDB = async () => {

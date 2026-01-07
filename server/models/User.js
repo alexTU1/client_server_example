@@ -1,3 +1,10 @@
+/**
+ * @fileoverview This file defines fields and allowed data types for interaction of records within the users collection.
+ * @author @alexTU1
+ * @version 1.0.0
+ * @module User.js
+ */
+
 import mongoose from "mongoose";
 import bcrypt from "bcrypt"
 
