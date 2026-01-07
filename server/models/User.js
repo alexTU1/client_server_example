@@ -8,6 +8,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt"
 
+// Define User Schema
 const UserSchema = new mongoose.Schema({
     name: {
     type: String,
@@ -28,6 +29,7 @@ const UserSchema = new mongoose.Schema({
 },
 { timestamps: true });
 
+// Pre-save hook to hash password before saving to database
 UserSchema.pre("save", async function(next) {
     try {
         if (!this.isModified("password")) return next();
@@ -41,17 +43,19 @@ UserSchema.pre("save", async function(next) {
     }
 });
 
+// Method to compare entered password with stored hashed password
 UserSchema.methods.comparePasswords = async function(password) {
     try {
-        // compares the stored hashed password with the provided password(enterd by user in login form).
+        // compares the stored hashed password(in mongo) with the provided password(enterd by user in login form).
         return bcrypt.compare(password, this.password);
     } catch (error) {
         throw new Error("Invalid Password Error: ", error.message);  
     }
 }
 
+// Exclude password field when converting to JSON
 UserSchema.methods.toJSON = function () {
-  const obj = this.toObject();
+  const obj = this.toObject()
   delete obj.password;
   return obj;
 };
