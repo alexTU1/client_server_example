@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 // Routes
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send('API is running...');
 });
 app.use('/api/users', userRoutes);
